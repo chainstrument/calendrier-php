@@ -30,7 +30,7 @@ class Month
         'jeudi',
         'vendredi',
         'samedi',
-        'decembre',
+        'dimanche',
     ];
 
     public function __construct( ?int $month = null, ?int $year = null)

@@ -28,14 +28,14 @@ $start = $month->getStartingDay()->modify('last monday')
 
     <?=$month->getWeeks();?>
 
-    <table class="calendar__table">
+    <table class="calendar__table calendar__table--<?= $month->getWeeks() ?>weeks" >
 
         <?php for ($i = 0; $i < $month->getWeeks(); $i++): ?>
             <tr>
                 <?php foreach ($month->days as $k => $day): 
                     $date = (clone $start)->modify("+" . ($k + $i * 7) . " days");
                     ?>
-                   <td class="calendar__othermonth">
+                   <td class="<?= $month->widthInMonth($date) ? '' : 'calendar__othermonth' ?>">
                        <?php if ($i === 0): ?>
                         <div class="calendar__weekday"><?=$day?></div>
                        <?php endif;?>
