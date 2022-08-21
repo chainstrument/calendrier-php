@@ -1,0 +1,16 @@
+{
+    "name": "louki/calendar",
+    "authors": [
+        {
+            "name": "chahir-l",
+            "email": "c.loukili@gmail.com"
+        }
+    ],
+    "description" : "",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "src"
+        }
+    }
+}
