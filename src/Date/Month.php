@@ -6,8 +6,8 @@ use DateTime;
 
 class Month
 {
-    private $year;
-    private $month;
+    public $year;
+    public $month;
 
     private $months = [
         'janvier',
@@ -39,12 +39,12 @@ class Month
             throw new \Exception('Invalid Month');
         }
         
-        if($month === null)
+        if($month === null || $month < 1 || $month > 12)
         {
             $month = intval(date('m'));
         }
         
-        if($year === null){
+        if($year === null  ){
             
             $year = intval(date('Y'));
         }
@@ -77,4 +77,33 @@ public function getStartingDay() :\DateTime
     {
         return $this->getStartingDay()->format('Y-m') === $date->format('Y-m');
     }
+
+    public function nextMonth()
+    {
+
+        $month = $this->month + 1;
+        $year = $this->year;
+        if($month > 12)
+        {
+            $month = 1;
+            $year += 1;
+        }
+
+        return new Month($month, $year);
+    }
+    
+    public function previousMonth()
+    {
+
+        $month = $this->month - 1;
+        $year = $this->year;
+        if($month < 1)
+        {
+            $month = 12;
+            $year -= 1;
+        }
+
+        return new Month($month, $year);
+    }
+
 }

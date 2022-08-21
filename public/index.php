@@ -1,5 +1,5 @@
 <?php
-
+ini_set("display_errors", true);
 include_once '../vendor/autoload.php';
 $month = new \App\Date\Month($_GET['month'] ?? null, $_GET['year'] ?? null);
 $start = $month->getStartingDay()->modify('last monday')
@@ -23,8 +23,15 @@ $start = $month->getStartingDay()->modify('last monday')
         <a href="index.php" class="navbar-brand">Mon calendrier</a>
 
     </nav>
+    <div class="d-flex flex-row align-items-center justify-content-between">
 
-    <h1><?=$month?></h1>
+        <h1><?=$month?></h1>
+        <div>
+            <a href="index.php?month=<?php echo $month->previousMonth()->month; ?>&year=<?php echo $month->previousMonth()->year; ?>" class="btn btn-primary">&lt;</a>
+            <a href="index.php?month=<?php echo $month->nextMonth()->month; ?>&year=<?php echo $month->nextMonth()->year; ?>" class="btn btn-primary">&gt;</a>
+        </div>
+    </div>
+
 
     <?=$month->getWeeks();?>
 
