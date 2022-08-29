@@ -37,12 +37,22 @@ require_once '../views/header.php';
             <tr>
                 <?php foreach ($month->days as $k => $day): 
                     $date = (clone $start)->modify("+" . ($k + $i * 7) . " days");
+                    $eventsForDay = $events[$date->format('Y-m-d')] ?? [];
+
+
                     ?>
                    <td class="<?= $month->widthInMonth($date) ? '' : 'calendar__othermonth' ?>">
                        <?php if ($i === 0): ?>
                         <div class="calendar__weekday"><?=$day?></div>
                        <?php endif;?>
                         <div class="calendar__day"><?= $date->format('d'); ?></div>
+                        <?php foreach($eventsForDay as $event) : ?>
+                            
+                            <div class="calendar__event">
+                                <?php echo $event->getStart()->format('H:i'); ?> - 
+                                <?php echo $event->getName(); ?>  
+                            </div>    
+                        <?php endforeach; ?>
                    </td>
                 <?php endforeach;?>
 
