@@ -1,5 +1,7 @@
 <?php 
 
+namespace App\Calendar;
+
 class Event {
 
     protected $name;
